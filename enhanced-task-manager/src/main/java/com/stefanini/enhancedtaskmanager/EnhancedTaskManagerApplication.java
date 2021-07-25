@@ -21,7 +21,7 @@ public class EnhancedTaskManagerApplication {
 		File newFile = new File("users.txt");
 		switch (args[0]) {
 			case "createUser":
-				userService.addUser(new User(args[1], args[2], args[3], args[4]));
+				userService.addUser(new User(args[1], args[2], args[3]));
 				break;
 			case "showAllUsers": {
 				if (newFile.length() != 0) {

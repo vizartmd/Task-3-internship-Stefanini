@@ -1,63 +1,24 @@
 package com.stefanini.enhancedtaskmanager;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.data.annotation.Id;
-
-import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
-@Entity
-@Table(name = "user")
-public class User {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="user_id")
-    private int userId;
+public class User implements Serializable {
 
-    @Column(name="first_name")
+    private static final long serialVersionUID = -8445207667904541460L;
+
     private String firstName;
-
-    @Column(name="last_name")
     private String lastName;
-
-    @Column(name="user_name")
     private String userName;
+    private List<Task> task;
 
-    @Column(name="group_id")
-    private String groupId;
-    
-    private List<Task> tasks;
+    public User() {
+    }
 
-    public User(int userId, String firstName, String lastName, String userName, String groupId) {
-        this.userId = userId;
+    public User(String firstName, String lastName, String userName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
-        this.groupId = groupId;
-    }
-
-    public User(String firstName, String lastName, String userName, String groupId) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.userName = userName;
-        this.groupId = groupId;
-    }
-
-    public int getId() {
-        return userId;
-    }
-
-    public void setId(int userId) {
-        this.userId = userId;
-    }
-
-    public String getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
     }
 
     public String getFirstName() {
@@ -84,19 +45,33 @@ public class User {
         this.userName = userName;
     }
 
-    public List<Task> getTasks() {
-        return tasks;
+    public List<Task> getTask() {
+        return task;
     }
 
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
+    public void setTask(List<Task> task) {
+        this.task = task;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+
+        User user = (User) o;
+
+        return getUserName().equals(user.getUserName());
+    }
+
+    @Override
+    public int hashCode() {
+        return getUserName().hashCode();
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "groupId=" + groupId +
-                ", firstName='" + firstName + '\'' +
+                "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", userName='" + userName + '\'' +
                 '}';

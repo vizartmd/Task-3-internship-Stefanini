@@ -1,25 +1,13 @@
 package com.stefanini.enhancedtaskmanager;
 
-import org.springframework.data.annotation.Id;
+import java.io.Serializable;
 
-import javax.persistence.*;
+public class Task implements Serializable {
 
-@Entity
-@Table(name = "task")
-public class Task {
+    private static final long serialVersionUID = -1932381152495708499L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="task_id")
-    private int task_id;
-
-    @Column(name="user_name")
     private String userName;
-
-    @Column(name="task_title")
     private String taskTitle;
-
-    @Column(name="task_description")
     private String taskDescription;
 
     public Task() {
@@ -29,21 +17,6 @@ public class Task {
         this.userName = userName;
         this.taskTitle = taskTitle;
         this.taskDescription = taskDescription;
-    }
-
-    public Task(int task_id, String userName, String taskTitle, String taskDescription) {
-        this.task_id = task_id;
-        this.userName = userName;
-        this.taskTitle = taskTitle;
-        this.taskDescription = taskDescription;
-    }
-
-    public int getTask_id() {
-        return task_id;
-    }
-
-    public void setTask_id(int task_id) {
-        this.task_id = task_id;
     }
 
     public String getUserName() {
