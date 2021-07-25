@@ -52,7 +52,4 @@ public class UserService {
         List<User> list = (ArrayList<User>) ois.readObject();
         return list;
     }
-
-    public void addTask(String userName, String taskTitle, String taskDeskription) {
-    }
 }

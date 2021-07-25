@@ -98,7 +98,7 @@ public class TaskService {
                         System.out.println("Users with id: " + group + " has not any tasks or such group doez not exists!");
                     } else {
                         tasks = user.getTask();
-                        System.out.println("Tasks of " + userName);
+                        System.out.println("Tasks of " + group);
                         for (Task task : tasks) {
                             System.out.println(task);
                         }
