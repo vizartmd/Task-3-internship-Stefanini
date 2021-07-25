@@ -10,15 +10,17 @@ public class User implements Serializable {
     private String firstName;
     private String lastName;
     private String userName;
+    private String groupId;
     private List<Task> task;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String userName) {
+    public User(String firstName, String lastName, String userName, String groupId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
+        this.groupId = groupId;
     }
 
     public String getFirstName() {
@@ -53,19 +55,12 @@ public class User implements Serializable {
         this.task = task;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
-
-        User user = (User) o;
-
-        return getUserName().equals(user.getUserName());
+    public String getGroupId() {
+        return groupId;
     }
 
-    @Override
-    public int hashCode() {
-        return getUserName().hashCode();
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
     }
 
     @Override
@@ -74,6 +69,7 @@ public class User implements Serializable {
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", userName='" + userName + '\'' +
+                ", groupId='" + groupId + '\'' +
                 '}';
     }
 }

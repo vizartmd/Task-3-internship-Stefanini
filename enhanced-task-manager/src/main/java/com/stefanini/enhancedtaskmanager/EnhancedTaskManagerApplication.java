@@ -12,16 +12,13 @@ public class EnhancedTaskManagerApplication {
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		SpringApplication.run(EnhancedTaskManagerApplication.class, args);
-    	System.out.println("Application was srarted successfully");
-    	System.out.println("I sow it! It is like something incredibly!!!");
-    	System.out.println("I changed in application.properties database name from 'blog' to 'enhanced_task_manager!'");
 
 		UserService userService = new UserService();
 		TaskService taskService = new TaskService();
 		File newFile = new File("users.txt");
 		switch (args[0]) {
 			case "createUser":
-				userService.addUser(new User(args[1], args[2], args[3]));
+				userService.addUser(new User(args[1], args[2], args[3], args[4]));
 				break;
 			case "showAllUsers": {
 				if (newFile.length() != 0) {
@@ -47,8 +44,22 @@ public class EnhancedTaskManagerApplication {
 					System.out.println("User list is empty!");
 				}
 			} break;
+			case "addTaskToGroup": {
+				if (newFile.length() != 0) {
+					List<User> users = userService.showAllUsers();
+					if (users != null) {
+						taskService.addTaskToGroup(args[1], args[2], args[3]);
+					}
+				}
+				else {
+					System.out.println("User list is empty!");
+				}
+			} break;
 			case "showTasks":
-				taskService.showTasks(args[1]);
+				taskService.showTasksByUsername(args[1]);
+				break;
+			case "showTasksByGroup":
+				taskService.showTasksByGroup(args[1]);
 				break;
 			default:
 				System.out.println("Non-existent method!");
